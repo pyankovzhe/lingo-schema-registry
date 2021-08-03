@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "v1/eventpb";
+
+message AccountEvent {
+  string uuid = 1;
+  string producer = 2;
+  google.protobuf.Timestamp event_time = 3;
+
+  EventKind kind = 4;
+  Account data = 5;
+}
+
+enum EventKind {
+  CREATED = 0;
+  UPDATED = 1;
+  DELETED = 2;
+}
+
+message Account {
+  string uuid = 1;
+  string login = 2;
+}
